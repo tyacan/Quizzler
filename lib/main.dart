@@ -37,7 +37,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questions[questionNumber],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -63,10 +63,17 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked true.
                 setState(() {
-                  scoreKeeper.add(Icon(
-                    Icons.check,
-                    color: Colors.green,
-                  ));
+                  questionNumber++;
+                  bool correctAnswer = answers[questionNumber];
+                  correctAnswer == true
+                      ? scoreKeeper.add(Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ))
+                      : scoreKeeper.add(Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ));
                 });
               },
             ),
@@ -86,6 +93,19 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
+                setState(() {
+                  questionNumber++;
+                  bool correctAnswer = answers[questionNumber];
+                  correctAnswer == false
+                      ? scoreKeeper.add(Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ))
+                      : scoreKeeper.add(Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ));
+                });
               },
             ),
           ),
@@ -99,12 +119,34 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   List<Icon> scoreKeeper = [
-    Icon(Icons.check, color: Colors.green),
-    Icon(Icons.close, color: Colors.red),
-    Icon(Icons.check, color: Colors.green),
-    Icon(Icons.check, color: Colors.green),
-    Icon(Icons.close, color: Colors.red),
+    // Ex: 
+    // Icon(Icons.check, color: Colors.green),
+    // Icon(Icons.close, color: Colors.red),
   ];
+
+  List<String> questions = [
+    'You can lead a cow down stairs but not up stairs.',
+    'Approximately one quarter of human bones are in the feet.',
+    'A slug\'s blood is green.',
+    'A slug\'s blood is green.1',
+    'A slug\'s blood is green.2',
+    'A slug\'s blood is green.3',
+    'A slug\'s blood is green.4',
+    'A slug\'s blood is green.5',
+  ];
+
+  List<bool> answers = [
+    false,
+    false,
+    false,
+    true,
+    true,
+    true,
+  ];
+
+  // What is the current number of question
+
+  int questionNumber = 0;
 }
 
 /*
