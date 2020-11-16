@@ -33,14 +33,14 @@ class _QuizPageState extends State<QuizPage> {
       brainQuiz.nextQuestion();
       bool correctAnswer = brainQuiz.getCorrectAnswer();
       correctAnswer == userAnswer
-          ? scoreKeeper.add(Icon(
+          ?scoreKeeper.add(Icon(
+              Icons.close,
+              color: Colors.red,
+            )): scoreKeeper.add(Icon(
               Icons.check,
               color: Colors.green,
             ))
-          : scoreKeeper.add(Icon(
-              Icons.close,
-              color: Colors.red,
-            ));
+          ;
     });
   }
 
@@ -121,7 +121,6 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
         Row(
           children: scoreKeeper,
         ),
