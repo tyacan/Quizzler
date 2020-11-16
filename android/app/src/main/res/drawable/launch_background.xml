@@ -9,4 +9,11 @@
             android:gravity="center"
             android:src="@mipmap/launch_image" />
     </item> -->
+
+    <!-- Show an app icon in the splash by uncommenting the following line -->
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/ic_launcher_foreground" />
+    </item>
 </layer-list>
