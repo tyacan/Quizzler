@@ -27,6 +27,23 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   BrainQuiz brainQuiz = new BrainQuiz();
+
+  void checkAnswer(bool userAnswer) {
+    setState(() {
+      brainQuiz.nextQuestion();
+      bool correctAnswer = brainQuiz.getCorrectAnswer();
+      correctAnswer == userAnswer
+          ? scoreKeeper.add(Icon(
+              Icons.check,
+              color: Colors.green,
+            ))
+          : scoreKeeper.add(Icon(
+              Icons.close,
+              color: Colors.red,
+            ));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,7 +56,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'Question Number: $questionNumber',
+                'Question Number: ' + brainQuiz.getQuestionNumber(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 18.0,
@@ -55,7 +72,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                brainQuiz.getQuestionText(questionNumber),
+                brainQuiz.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -80,19 +97,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                setState(() {
-                  questionNumber++;
-                  bool correctAnswer = brainQuiz.getCorrectAnswer(questionNumber);
-                  correctAnswer == true
-                      ? scoreKeeper.add(Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ))
-                      : scoreKeeper.add(Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ));
-                });
+                checkAnswer(true);
               },
             ),
           ),
@@ -111,19 +116,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                setState(() {
-                  questionNumber++;
-                  bool correctAnswer = brainQuiz.getCorrectAnswer(questionNumber);
-                  correctAnswer == false
-                      ? scoreKeeper.add(Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ))
-                      : scoreKeeper.add(Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ));
-                });
+                checkAnswer(false);
               },
             ),
           ),
@@ -141,10 +134,6 @@ class _QuizPageState extends State<QuizPage> {
     // Icon(Icons.check, color: Colors.green),
     // Icon(Icons.close, color: Colors.red),
   ];
-
-  // What is the current number of question
-
-  int questionNumber = 0;
 }
 
 /*
