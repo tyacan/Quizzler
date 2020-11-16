@@ -49,4 +49,8 @@ class BrainQuiz {
         ? _questionNumber++
         : _questionNumber = _questionNumber;
   }
+
+  bool isLastQuestion() {
+    return _questionNumber == _questionBank.length;
+  }
 }

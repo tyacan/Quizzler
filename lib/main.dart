@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:quizzler/brain_quiz.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -30,6 +33,11 @@ class _QuizPageState extends State<QuizPage> {
 
   void checkAnswer(bool userAnswer) {
     setState(() {
+      if (brainQuiz.isLastQuestion()){
+        Alert(context: context, title: "Congurgulation!", desc: "You completed the quiz.").show();
+        print('last question');
+        exit(0);
+      }
       brainQuiz.nextQuestion();
       bool correctAnswer = brainQuiz.getCorrectAnswer();
       correctAnswer == userAnswer
