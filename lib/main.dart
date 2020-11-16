@@ -85,9 +85,20 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         //TODO: Add a Row here as your score keeper
+        Row(
+          children: scoreKeeper,
+        ),
       ],
     );
   }
+
+  List<Icon> scoreKeeper = [
+    Icon(Icons.check, color: Colors.green),
+    Icon(Icons.close, color: Colors.red),
+    Icon(Icons.check, color: Colors.green),
+    Icon(Icons.check, color: Colors.green),
+    Icon(Icons.close, color: Colors.red),
+  ];
 }
 
 /*
