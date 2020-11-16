@@ -2,11 +2,27 @@ class Question {
   String questionText;
   bool questionAnswer;
 
-  // Question({String q, bool a}) { // This is named parameters.
-  Question(String q, bool a) {     //  This is ordered parameters.
-    questionText = q;
-    questionAnswer = a;
-  }
+  /// Constructor syntaxes
+  
+  // This is named parameters.
+  // Question({String q, bool a}) {
+  //   questionText = q;
+  //   questionAnswer = a;
+  // }
+  
+  // This is ordered parameters.
+  // Question(String q, bool a) {
+  //   questionText = q;
+  //   questionAnswer = a;
+  // }
+
+  // short named parameters.
+  Question(this.questionText, this.questionAnswer);
+
+  // short ordered parameters.
+  // Question({this.questionText, this.questionAnswer});
+
+  /// ./Constructor syntaxes
 }
 
 // List<Question> questions = [
