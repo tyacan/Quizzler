@@ -1,6 +1,9 @@
 import 'question.dart';
 
 class BrainQuiz {
+  // What is the current number of question
+  int _questionNumber = 0;
+
   List<Question> _questionBank = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
@@ -29,11 +32,21 @@ class BrainQuiz {
         true),
   ];
 
-  String getQuestionText(int questionNumber) {
-    return _questionBank[questionNumber].questionText;
+  String getQuestionNumber() {
+    return _questionNumber.toString();
   }
 
-  bool getCorrectAnswer(int questionNumber) {
-    return _questionBank[questionNumber].questionAnswer;
+  String getQuestionText() {
+    return _questionBank[_questionNumber].questionText;
+  }
+
+  bool getCorrectAnswer() {
+    return _questionBank[_questionNumber].questionAnswer;
+  }
+
+  void nextQuestion() {
+    _questionNumber < _questionBank.length
+        ? _questionNumber++
+        : _questionNumber = _questionNumber;
   }
 }
