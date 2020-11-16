@@ -51,6 +51,6 @@ class BrainQuiz {
   }
 
   bool isLastQuestion() {
-    return _questionNumber == _questionBank.length;
+    return _questionNumber == _questionBank.length - 1;
   }
 }

@@ -36,7 +36,6 @@ class _QuizPageState extends State<QuizPage> {
       if (brainQuiz.isLastQuestion()){
         Alert(context: context, title: "Congurgulation!", desc: "You completed the quiz.").show();
         print('last question');
-        exit(0);
       }
       brainQuiz.nextQuestion();
       bool correctAnswer = brainQuiz.getCorrectAnswer();
